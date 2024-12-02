@@ -28,6 +28,11 @@ public class UserController {
 
 //    mailController mail=new mailController();
 
+    @GetMapping("/getUsers")
+    public List<userDTO> getusers()
+    {
+        return userService.getAllusers();
+    }
 
     @PostMapping("/saveUser")
     public userDTO saveUser(@RequestBody userDTO userdto)
@@ -47,7 +52,10 @@ public class UserController {
         return userService.deleteUser(userdto);
     }
 
-   
+    @GetMapping("/all/{id}")
+    public Optional<User> getUserAllById(@PathVariable String id) {
+        return userService.getUserAllById(id);
+    }
 
     @GetMapping("/{id}")
     public Optional<String> getUserById(@PathVariable String id) {
